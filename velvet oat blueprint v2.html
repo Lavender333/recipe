@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velvet Oat Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FAF7F2;
+  --forest:#243D2F;
+  --amber:#C8823A;
+  --amber-soft:#F0C07A;
+  --muted:#8A7F72;
+  --card:#FFFFFF;
+  --border:#E8E0D0;
+  --ink:#1C1C1A;
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+
+/* ── HERO ── */
+.hero{
+  min-height:100svh;
+  background:var(--forest);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:3rem 1.5rem;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 110%, rgba(200,130,58,.22) 0%, transparent 65%);
+}
+.hero-tag{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--amber-soft);margin-bottom:1.5rem;opacity:.8}
+.hero-title{
+  font-family:'Playfair Display',serif;font-weight:400;
+  font-size:clamp(2.6rem,7vw,5.5rem);line-height:1.1;
+  color:#FAF7F2;margin-bottom:.6rem;
+}
+.hero-title em{font-style:italic;color:var(--amber-soft)}
+.hero-sub{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,247,242,.38);margin-bottom:2.5rem}
+.hero-chips{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
+.chip{padding:.3rem .9rem;border:1px solid rgba(200,130,58,.35);border-radius:100px;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber-soft)}
+.byline{position:absolute;bottom:1.8rem;font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(250,247,242,.25)}
+
+/* ── SECTION WRAPPER ── */
+.wrap{max-width:760px;margin:0 auto;padding:5rem 1.5rem}
+.sec-tag{font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--amber);margin-bottom:.5rem}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.6rem);font-weight:400;color:var(--forest);line-height:1.15;margin-bottom:2.5rem}
+
+/* ── STEPS ── */
+.steps{display:flex;flex-direction:column;gap:2px;margin-bottom:1rem}
+.step{
+  display:flex;align-items:center;gap:1.5rem;
+  background:var(--card);border:1px solid var(--border);
+  padding:1.4rem 1.6rem;transition:background .25s;
+}
+.step:hover{background:#F5F0E6}
+.step-n{
+  font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;
+  color:var(--border);min-width:2rem;line-height:1;flex-shrink:0;
+}
+.step-body{}
+.step-name{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:.2rem}
+.step-text{font-size:.85rem;color:var(--ink);font-weight:400}
+.step-text strong{color:var(--forest)}
+
+/* ── HONEY PANEL ── */
+.honey{
+  background:var(--forest);color:#FAF7F2;
+  padding:2.5rem 2rem;margin:4rem 0;
+  border-radius:2px;position:relative;overflow:hidden;
+}
+.honey::after{content:'⬡';position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);font-size:8rem;color:rgba(200,130,58,.08);line-height:1;pointer-events:none}
+.honey-head{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--amber-soft);margin-bottom:.3rem}
+.honey-note{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(250,247,242,.35);margin-bottom:2rem}
+.honey-rules{display:flex;flex-direction:column;gap:1.2rem}
+.hrule{display:flex;gap:1rem;align-items:flex-start}
+.hrule-num{
+  width:1.6rem;height:1.6rem;border-radius:50%;
+  background:rgba(200,130,58,.2);color:var(--amber-soft);
+  font-size:.65rem;font-weight:500;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:.1rem;
+}
+.hrule-text{font-size:.82rem;color:rgba(250,247,242,.78);line-height:1.5}
+.hrule-text strong{color:#FAF7F2;font-weight:500}
+
+/* ── RECIPE CARDS ── */
+.recipes{display:flex;flex-direction:column;gap:2px;margin-bottom:4rem}
+.rcard{
+  background:var(--card);border:1px solid var(--border);
+  overflow:hidden;transition:box-shadow .25s;
+}
+.rcard:hover{box-shadow:0 2px 16px rgba(36,61,47,.07)}
+.rcard-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.3rem 1.6rem;cursor:pointer;gap:1rem;
+  -webkit-tap-highlight-color:transparent;
+}
+.rcard-left{flex:1;min-width:0}
+.rcard-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:400;color:var(--forest);line-height:1.2;margin-bottom:.2rem}
+.rcard-tag{font-size:.72rem;color:var(--muted)}
+
+.macros{display:flex;gap:1.2rem;margin-top:.8rem;flex-wrap:wrap}
+.mac{text-align:center}
+.mac-val{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:400;color:var(--amber);display:block;line-height:1}
+.mac-lbl{font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+.toggle{width:2rem;height:2rem;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:1rem;flex-shrink:0;transition:all .3s}
+.rcard.open .toggle{background:var(--forest);border-color:var(--forest);color:#FAF7F2;transform:rotate(45deg)}
+
+.rcard-body{display:none;padding:0 1.6rem 1.6rem;border-top:1px solid var(--border)}
+.rcard.open .rcard-body{display:block}
+.ing-label{font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--amber);margin:1.2rem 0 .8rem}
+.ing-list{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.ing-list li{font-size:.8rem;color:#444;display:flex;gap:.7rem;line-height:1.4;align-items:baseline}
+.ing-list li::before{content:'·';color:var(--amber);flex-shrink:0;font-size:1rem;line-height:.9}
+.ing-note{margin-top:1rem;padding:.65rem 1rem;background:#FAF7F2;border-left:2px solid var(--amber);font-size:.75rem;color:var(--muted);line-height:1.5;border-radius:0 2px 2px 0}
+
+/* ── CAT HEADER ── */
+.cat-head{display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;margin-top:3rem}
+.cat-line{flex:1;height:1px;background:var(--border)}
+.cat-label{font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+
+/* ── PANTRY ── */
+.pantry-wrap{background:#EDE8DE;padding:4rem 1.5rem}
+.pantry-inner{max-width:760px;margin:0 auto}
+.pantry-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2px;background:rgba(36,61,47,.08);border:1px solid rgba(36,61,47,.08);margin-top:2rem}
+.pitem{background:#EDE8DE;padding:1.6rem;transition:background .25s}
+.pitem:hover{background:var(--cream)}
+.picon{font-size:1.4rem;margin-bottom:.6rem}
+.pname{font-family:'Playfair Display',serif;font-size:1rem;color:var(--forest);margin-bottom:.3rem}
+.pdesc{font-size:.75rem;color:var(--muted);line-height:1.55}
+
+/* ── FOOTER ── */
+footer{background:var(--forest);text-align:center;padding:2.5rem 1.5rem;font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(250,247,242,.25)}
+footer span{color:var(--amber-soft)}
+
+/* ── ANIM ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.vis{opacity:1;transform:none}
+
+@media(max-width:480px){
+  .macros{gap:.8rem}
+  .mac-val{font-size:1.1rem}
+  .honey{padding:2rem 1.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-tag">High-Protein Plant Performance</p>
+  <h1 class="hero-title">Velvet Oat<br><em>Blueprint</em></h1>
+  <p class="hero-sub">13 Flavors · Honey Edition</p>
+  <div class="hero-chips">
+    <span class="chip">3 Jars per Batch</span>
+    <span class="chip">6h Chill</span>
+    <span class="chip">No Refined Sugar</span>
+  </div>
+  <p class="byline">Created by Antoinette Williams</p>
+</section>
+
+<!-- HOW TO MAKE IT -->
+<div class="wrap">
+  <div class="reveal">
+    <p class="sec-tag">How It Works</p>
+    <h2 class="sec-title">4 Steps.<br>That's It.</h2>
+  </div>
+
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-n">1</div>
+      <div class="step-body">
+        <div class="step-name">Jars First</div>
+        <div class="step-text">Add <strong>⅓ cup dry rolled oats</strong> into each of 3 airtight jars.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">2</div>
+      <div class="step-body">
+        <div class="step-name">Blend</div>
+        <div class="step-text">Plant milk + silken tofu + sweetener + nut butter → blend <strong>HIGH, 45 seconds.</strong></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">3</div>
+      <div class="step-body">
+        <div class="step-name">Combine</div>
+        <div class="step-text">Pour evenly into the 3 jars. <strong>Stir well.</strong></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">4</div>
+      <div class="step-body">
+        <div class="step-name">Refrigerate</div>
+        <div class="step-text">Seal lids. Chill <strong>at least 6 hours.</strong> Wake up to velvet pudding.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HONEY -->
+  <div class="honey reveal">
+    <div class="honey-head">No dates? Use honey.</div>
+    <div class="honey-note">Quick swap — same macros, same texture</div>
+    <div class="honey-rules">
+      <div class="hrule">
+        <div class="hrule-num">1</div>
+        <div class="hrule-text">Swap 4 dates → <strong>2–3 tbsp raw honey</strong> (use 2 tbsp for lighter sweet, 3 tbsp for full sweet)</div>
+      </div>
+      <div class="hrule">
+        <div class="hrule-num">2</div>
+        <div class="hrule-text">Reduce plant milk from <strong>1¼ cups → 1 cup</strong></div>
+      </div>
+      <div class="hrule">
+        <div class="hrule-num">3</div>
+        <div class="hrule-text">Calories &amp; carbs stay <strong>virtually the same</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECIPES -->
+  <div class="reveal">
+    <p class="sec-tag">The Flavors</p>
+    <h2 class="sec-title">Pick One.<br>Tap for Details.</h2>
+  </div>
+
+  <!-- CAT 1 -->
+  <div class="cat-head reveal"><div class="cat-line"></div><div class="cat-label">Nut Butter &amp; Cocoa</div><div class="cat-line"></div></div>
+  <div class="recipes reveal">
+
+    <div class="rcard">
+      <div class="rcard-head" onclick="toggle(this)">
+        <div class="rcard-left">
+          <div class="rcard-name">Chocolate Peanut Butter</div>
+          <div class="rcard-tag">Deep cocoa · structural peanut protein</div>
+          <div class="macros">
+            <div class="mac"><span class="mac-val">295</span><span class="mac-lbl">kcal</span></div>
+            <div class="mac"><span class="mac-val">14g</span><span class="mac-lbl">protein</span></div>
+            <div class="mac"><span class="mac-val">39g</span><span class="mac-lbl">carbs</span></div>
+            <div class="mac"><span class="mac-val">11g</span><span class="mac-lbl">fat</span></div>
+            <div class="mac"><span class="mac-val">7g</span><span class="mac-lbl">fiber</span></div>
+          </div>
+        </div>
+        <div class="toggle">+</div>
+      </div>
+      <div class="rcard-body">
+        <div class="ing-label">Blend together</div>
+        <ul class="ing-list">
+          <li>1¼ cups Soy Milk <em style="color:#aaa">(use 1 cup if using honey)</em></li>
+          <li>⅓ cup Silken Tofu</li>
+          <li><strong style="color:var(--forest)">Sweetener:</strong> 4 Medjool Dates <em style="color:#aaa">— or — 2–3 tbsp raw honey</em></li>
+          <li>2 tbsp Creamy Peanut Butter</li>
+          <li>2 tbsp PB2 Powder</li>
+          <li>2½ tbsp Cocoa Powder</li>
+          <li>1 tsp Vanilla · ⅛ tsp Salt</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="rcard-head" onclick="toggle(this)">
+        <div class="rcard-left">
+          <div class="rcard-name">Almond Coconut Mousse</div>
+          <div class="rcard-tag">Toasted almond · clean coconut</div>
+          <div class="macros">
+            <div class="mac"><span class="mac-val">305</span><span class="mac-lbl">kcal</span></div>
+            <div class="mac"><span class="mac-val">12g</span><span class="mac-lbl">protein</span></div>
+            <div class="mac"><span class="mac-val">38g</span><span class="mac-lbl">carbs</span></div>
+            <div class="mac"><span class="mac-val">13g</span><span class="mac-lbl">fat</span></div>
+            <div class="mac"><span class="mac-val">7g</span><span class="mac-lbl">fiber</span></div>
+          </div>
+        </div>
+        <div class="toggle">+</div>
+      </div>
+      <div class="rcard-body">
+        <div class="ing-label">Blend together</div>
+        <ul class="ing-list">
+          <li>1¼ cups Soy Milk <em style="color:#aaa">(use 1 cup if using honey)</em></li>
+          <li>⅓ cup Silken Tofu</li>
+          <li><strong style="color:var(--forest)">Sweetener:</strong> 4 Medjool Dates <em style="color:#aaa">— or — 2–3 tbsp raw honey</em></li>
+          <li>2 tbsp Almond Butter</li>
+          <li>1 tbsp Cocoa Powder</li>
+          <li>½ tsp Almond Extract · ⅛ tsp Salt</li>
+        </ul>
+        <div class="ing-note">Top each jar with toasted coconut shreds.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="rcard-head" onclick="toggle(this)">
+        <div class="rcard-left">
+          <div class="rcard-name">Spiced Cookie Butter</div>
+          <div class="rcard-tag">Warm caramel biscuit · sustained energy</div>
+          <div class="macros">
+            <div class="mac"><span class="mac-val">295</span><span class="mac-lbl">kcal</span></div>
+            <div class="mac"><span class="mac-val">10g</span><span class="mac-lbl">protein</span></div>
+            <div class="mac"><span class="mac-val">41g</span><span class="mac-lbl">carbs</span></div>
+            <div class="mac"><span class="mac-val">11g</span><span class="mac-lbl">fat</span></div>
+            <div class="mac"><span class="mac-val">6g</span><span class="mac-lbl">fiber</span></div>
+          </div>
+        </div>
+        <div class="toggle">+</div>
+      </div>
+      <div class="rcard-body">
+        <div class="ing-label">Blend together</div>
+        <ul class="ing-list">
+          <li>1¼ cups Soy or Oat Milk <em style="color:#aaa">(use 1 cup if using honey)</em></li>
+          <li>⅓ cup Silken Tofu</li>
+          <li><strong style="color:var(--forest)">Sweetener:</strong> 3 Medjool Dates <em style="color:#aaa">— or — 2 tbsp raw honey</em></li>
+          <li>2 tbsp Lotus Biscoff Cookie Butter</li>
+          <li>½ tsp Cinnamon · 1 tsp Vanilla · ⅛ tsp Salt</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="rcard-head" onclick="toggle(this)">
+        <div class="rcard-left">
+          <div class="rcard-name">Vanilla Bean Cookie Dough</div>
+          <div class="rcard-tag">Sweet vanilla · dark chocolate chips</div>
+          <div class="macros">
+            <div class="mac"><span class="mac-val">290</span><span class="mac-lbl">kcal</span></div>
+            <div class="mac"><span class="mac-val">11g</span><span class="mac-lbl">protein</span></div>
+            <div class="mac"><span class="mac-val">40g</span><span class="mac-lbl">carbs</span></div>
+            <div class="mac"><span class="mac-val">11g</span><span class="mac-lbl">fat</span></div>
+            <div class="mac"><span class="mac-val">6g</span><span class="mac-lbl">fiber</span></div>
+          </div>
+        </div>
+        <div class="toggle">+</div>
+      </div>
+      <div class="rcard-body">
+        <div class="ing-label">Blend together</div>
+        <ul class="ing-list">
+          <li>1¼ cups Soy Milk <em style="color:#aaa">(use 1 cup if using honey)</em></li>
+          <li>⅓ cup Silken Tofu</li>
+          <li><strong style="color:var(--forest)">Sweetener:</strong> 4 Medjool Dates <em style="color:#aaa">— or — 2–3 tbsp raw honey</em></li>
+          <li>2 tbsp Raw Cashew Butter</li>
+          <li>1½ tsp Vanilla · ⅛ tsp Salt</li>
+        </ul>
+        <div class="ing-note">Stir 1 tsp mini chocolate chips into dry oats first.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CAT 2 -->
+  <div class="cat-head reveal"><div class="cat-line"></div><div class="cat-label">Orchard &amp; Berry</div><div class="cat-line"></div></div>
+  <div class="recipes reveal">
+
+    <div class="rcard">
+      <div class="rcard-head" onclick="toggle(this)">
+        <div class="rcard-left">
+          <div class="rcard-name">Strawberries &amp; Cream</div>
+          <div class="rcard-tag">Fresh berry · pastel pink base</div>
+          <div class="macros">
+            <div class="mac"><span class="mac-val">275</span><span class="mac-lbl">kcal</span></div>
+            <div class="mac"><span class="mac-val">11g</span><span class="mac-lbl">protein</span></div>
+            <div class="mac"><span class="mac-val">39g</span><span class="mac-lbl">carbs</span></div>
+            <div class="mac"><span class="mac-val">9g</span><span class="mac-lbl">fat</span></div>
+            <div class="mac"><span class="mac-val">7g</span><span class="mac-lbl">fiber</span></div>
+          </div>
+        </div>
+        <div class="toggle">+</div>
+      </div>
+      <div class="rcard-body">
+        <div class="ing-label">Blend together</div>
+        <ul class="ing-list">
+          <li>1¼ cups Soy Milk <em style="color:#aaa">(use 1 cup if using honey)</em></li>
+          <li>⅓ cup Silken Tofu</li>
+          <li><strong style="color:var(--forest)">Sweetener:</strong> 4 Medjool Dates <em style="color:#aaa">— or — 2–3 tbsp raw honey</em></li>
+          <li>2 tbsp Almond Butter</li>
+          <li>½ cup fresh or frozen Strawberries</li>
+          <li>1 tbsp Vanilla · ⅛ tsp Salt</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="rcard-head" onclick="toggle(this)">
+        <div class="rcard-left">
+          <div class="rcard-name">Blueberry Compote</div>
+          <div class="rcard-tag">Forest berry · lemon zest</div>
+          <div class="macros">
+            <div class="mac"><span class="mac-val">278</span><span class="mac-lbl">kcal</span></div>
+            <div class="mac"><span class="mac-val">11g</span><span class="mac-lbl">protein</span></div>
+            <div class="mac"><span class="mac-val">40g</span><span class="mac-lbl">carbs</span></div>
+            <div class="mac"><span class="mac-val">9g</span><span class="mac-lbl">fat</span></div>
+            <div class="mac"><span class="mac-val">7g</span><span class="mac-lbl">fiber</span></div>
+          </div>
+        </div>
+        <div class="toggle">+</div>
+      </div>
+      <div class="rcard-body">
+        <div class="ing-label">Blend together</div>
+        <ul class="ing-list">
+          <li>1¼ cups Soy Milk <em style="color:#aaa">(use 1 cup if using honey)</em></li>
+          <li>⅓ cup Silken Tofu</li>
+          <li><strong style="color:var(--forest)">Sweetener:</strong> 4 Medjool Dates <em style="color:#aaa">— or — 2–3 tbsp raw honey</em></li>
+          <li>2 tbsp Almond Butter</li>
+          <li>1 tsp Vanilla · ½ tsp Lemon Zest · ⅛ tsp Salt</li>
+        </ul>
+        <div class="ing-note">Drop whole blueberries into jars before pouring.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="rcard-head" onclick="toggle(this)">
+        <div class="rcard-left">
+          <div class="rcard-name">Peanut Butter Jam Swirl</div>
+          <div class="rcard-tag">Classic PB&J · muscle nutrition</div>
+          <div class="macros">
+            <div class="mac"><span class="mac-val">295</span><span class="mac-lbl">kcal</span></div>
+            <div class="mac"><span class="mac-val">12g</span><span class="mac-lbl">protein</span></div>
+            <div class="mac"><span class="mac-val">42g</span><span class="mac-lbl">carbs</span></div>
+            <div class="mac"><span class="mac-val">10g</span><span class="mac-lbl">fat</span></div>
+            <div class="mac"><span class="mac-val">6g</span><span class="mac-lbl">fiber</span></div>
+          </div>
+        </div>
+        <div class="toggle">+</div>
+      </div>
+      <div class="rcard-body">
+        <div class="ing-label">Blend together</div>
+        <ul class="ing-list">
+          <li>1¼ cups Soy Milk <em style="color:#aaa">(use 1 cup if using honey)</em></li>
+          <li>⅓ cup Silken Tofu</li>
+          <li><strong style="color:var(--forest)">Sweetener:</strong> 4 Medjool Dates <em style="color:#aaa">— or — 2–3 tbsp raw honey</em></li>
+          <li>2 tbsp Peanut Butter</li>
+          <li>1 tsp Vanilla · ⅛ tsp Salt</li>
+        </ul>
+        <div class="ing-note">Swirl 1 tsp raspberry fruit spread into each jar after filling.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="rcard-head" onclick="toggle(this)">
+        <div class="rcard-left">
+          <div class="rcard-name">Mango Coconut Medley</div>
+          <div class="rcard-tag">Tropical mango · cashew cream</div>
+          <div class="macros">
+            <div class="mac"><span class="mac-val">285</span><span class="mac-lbl">kcal</span></div>
+            <div class="mac"><span class="mac-val">11g</span><span class="mac-lbl">protein</span></div>
+            <div class="mac"><span class="mac-val">42g</span><span class="mac-lbl">carbs</span></div>
+            <div class="mac"><span class="mac-val">10g</span><span class="mac-lbl">fat</span></div>
+            <div class="mac"><span class="mac-val">5g</span><span class="mac-lbl">fiber</span></div>
+          </div>
+        </div>
+        <div class="toggle">+</div>
+      </div>
+      <div class="rcard-body">
+        <div class="ing-label">Blend together</div>
+        <ul class="ing-list">
+          <li>1 cup Soy Milk + ¼ cup Coconut Milk <em style="color:#aaa">(¾ cup soy w/ honey)</em></li>
+          <li>⅓ cup Silken Tofu</li>
+          <li><strong style="color:var(--forest)">Sweetener:</strong> 4 Medjool Dates <em style="color:#aaa">— or — 2–3 tbsp raw honey</em></li>
+          <li>2 tbsp Raw Cashew Butter</li>
+          <li>1 tsp Vanilla · ⅛ tsp Salt</li>
+        </ul>
+        <div class="ing-note">Add diced frozen mango to dry oats before pouring cream.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CAT 3 -->
+  <div class="cat-head reveal"><div class="cat-line"></div><div class="cat-label">Harvest Spice &amp; Coffee</div><div class="cat-line"></div></div>
+  <div class="recipes reveal">
+
+    <div class="rcard">
+      <div class="rcard-head" onclick="toggle(this)">
+        <div class="rcard-left">
+          <div class="rcard-name">Apple Spice</div>
+          <div class="rcard-tag">Orchard comfort · applesauce base</div>
+          <div class="macros">
+            <div class="mac"><span class="mac-val">260</span><span class="mac-lbl">kcal</span></div>
+            <div class="mac"><span class="mac-val">11g</span><span class="mac-lbl">protein</span></div>
+            <div class="mac"><span class="mac-val">40g</span><span class="mac-lbl">carbs</span></div>
+            <div class="mac"><span class="mac-val">9g</span><span class="mac-lbl">fat</span></div>
+            <div class="mac"><span class="mac-val">7g</span><span class="mac-lbl">fiber</span></div>
+          </div>
+        </div>
+        <div class="toggle">+</div>
+      </div>
+      <div class="rcard-body">
+        <div class="ing-label">Blend together</div>
+        <ul class="ing-list">
+          <li>1 cup Soy Milk <em style="color:#aaa">(use ¾ cup if using honey)</em></li>
+          <li>¼ cup unsweetened Applesauce</li>
+          <li>⅓ cup Silken Tofu</li>
+          <li><strong style="color:var(--forest)">Sweetener:</strong> 4 Medjool Dates <em style="color:#aaa">— or — 2–3 tbsp raw honey</em></li>
+          <li>2 tbsp Almond Butter</li>
+          <li>½ tsp Cinnamon · ⅛ tsp Nutmeg · ⅛ tsp Salt</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="rcard-head" onclick="toggle(this)">
+        <div class="rcard-left">
+          <div class="rcard-name">Banana Walnut Bread</div>
+          <div class="rcard-tag">Ripe banana · warm walnut</div>
+          <div class="macros">
+            <div class="mac"><span class="mac-val">300</span><span class="mac-lbl">kcal</span></div>
+            <div class="mac"><span class="mac-val">12g</span><span class="mac-lbl">protein</span></div>
+            <div class="mac"><span class="mac-val">42g</span><span class="mac-lbl">carbs</span></div>
+            <div class="mac"><span class="mac-val">12g</span><span class="mac-lbl">fat</span></div>
+            <div class="mac"><span class="mac-val">7g</span><span class="mac-lbl">fiber</span></div>
+          </div>
+        </div>
+        <div class="toggle">+</div>
+      </div>
+      <div class="rcard-body">
+        <div class="ing-label">Blend together</div>
+        <ul class="ing-list">
+          <li>1¼ cups Soy Milk <em style="color:#aaa">(use 1 cup if using honey)</em></li>
+          <li>⅓ cup Silken Tofu</li>
+          <li><strong style="color:var(--forest)">Sweetener:</strong> 3 Medjool Dates <em style="color:#aaa">— or — 2 tbsp raw honey</em></li>
+          <li>½ very ripe Banana</li>
+          <li>2 tbsp Walnut or Almond Butter</li>
+          <li>½ tsp Cinnamon · 1 tsp Vanilla · ⅛ tsp Salt</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="rcard-head" onclick="toggle(this)">
+        <div class="rcard-left">
+          <div class="rcard-name">Pumpkin Cream</div>
+          <div class="rcard-tag">Autumn layers · rich plant fiber</div>
+          <div class="macros">
+            <div class="mac"><span class="mac-val">255</span><span class="mac-lbl">kcal</span></div>
+            <div class="mac"><span class="mac-val">11g</span><span class="mac-lbl">protein</span></div>
+            <div class="mac"><span class="mac-val">38g</span><span class="mac-lbl">carbs</span></div>
+            <div class="mac"><span class="mac-val">9g</span><span class="mac-lbl">fat</span></div>
+            <div class="mac"><span class="mac-val">7g</span><span class="mac-lbl">fiber</span></div>
+          </div>
+        </div>
+        <div class="toggle">+</div>
+      </div>
+      <div class="rcard-body">
+        <div class="ing-label">Blend together</div>
+        <ul class="ing-list">
+          <li>1 cup Soy Milk <em style="color:#aaa">(use ¾ cup if using honey)</em></li>
+          <li>¼ cup canned Pumpkin Purée</li>
+          <li>⅓ cup Silken Tofu</li>
+          <li><strong style="color:var(--forest)">Sweetener:</strong> 4 Medjool Dates <em style="color:#aaa">— or — 2–3 tbsp raw honey</em></li>
+          <li>2 tbsp Pecan or Almond Butter</li>
+          <li>½ tsp Pumpkin Pie Spice · 1 tsp Vanilla · ⅛ tsp Salt</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="rcard-head" onclick="toggle(this)">
+        <div class="rcard-left">
+          <div class="rcard-name">Glazed Cinnamon Pastry</div>
+          <div class="rcard-tag">Sweet icing vibes · cashew base</div>
+          <div class="macros">
+            <div class="mac"><span class="mac-val">270</span><span class="mac-lbl">kcal</span></div>
+            <div class="mac"><span class="mac-val">11g</span><span class="mac-lbl">protein</span></div>
+            <div class="mac"><span class="mac-val">38g</span><span class="mac-lbl">carbs</span></div>
+            <div class="mac"><span class="mac-val">9g</span><span class="mac-lbl">fat</span></div>
+            <div class="mac"><span class="mac-val">6g</span><span class="mac-lbl">fiber</span></div>
+          </div>
+        </div>
+        <div class="toggle">+</div>
+      </div>
+      <div class="rcard-body">
+        <div class="ing-label">Blend together</div>
+        <ul class="ing-list">
+          <li>1¼ cups Soy Milk <em style="color:#aaa">(use 1 cup if using honey)</em></li>
+          <li>⅓ cup Silken Tofu</li>
+          <li><strong style="color:var(--forest)">Sweetener:</strong> 4 Medjool Dates <em style="color:#aaa">— or — 2–3 tbsp raw honey</em></li>
+          <li>2 tbsp Raw Cashew Butter</li>
+          <li>½ tsp Cinnamon · ¼ tsp Nutmeg</li>
+          <li>1 tsp Vanilla · ⅛ tsp Salt</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="rcard-head" onclick="toggle(this)">
+        <div class="rcard-left">
+          <div class="rcard-name">Mocha Espresso</div>
+          <div class="rcard-tag">Cold brew · cocoa · morning fuel</div>
+          <div class="macros">
+            <div class="mac"><span class="mac-val">265</span><span class="mac-lbl">kcal</span></div>
+            <div class="mac"><span class="mac-val">11g</span><span class="mac-lbl">protein</span></div>
+            <div class="mac"><span class="mac-val">38g</span><span class="mac-lbl">carbs</span></div>
+            <div class="mac"><span class="mac-val">9g</span><span class="mac-lbl">fat</span></div>
+            <div class="mac"><span class="mac-val">7g</span><span class="mac-lbl">fiber</span></div>
+          </div>
+        </div>
+        <div class="toggle">+</div>
+      </div>
+      <div class="rcard-body">
+        <div class="ing-label">Blend together</div>
+        <ul class="ing-list">
+          <li>¾ cup Soy Milk <em style="color:#aaa">(use ½ cup if using honey)</em></li>
+          <li>½ cup concentrated Cold Brew Coffee</li>
+          <li>⅓ cup Silken Tofu</li>
+          <li><strong style="color:var(--forest)">Sweetener:</strong> 4 Medjool Dates <em style="color:#aaa">— or — 2–3 tbsp raw honey</em></li>
+          <li>2 tbsp Almond Butter</li>
+          <li>1 tbsp Cocoa Powder</li>
+          <li>½ tsp Vanilla · ⅛ tsp Salt</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /wrap -->
+
+<!-- PANTRY -->
+<div class="pantry-wrap">
+  <div class="pantry-inner">
+    <div class="reveal">
+      <p class="sec-tag">Stock These</p>
+      <h2 class="sec-title" style="color:var(--forest)">Your Pantry<br>Essentials</h2>
+    </div>
+    <div class="pantry-grid reveal">
+      <div class="pitem">
+        <div class="picon">🌾</div>
+        <div class="pname">Rolled Oats</div>
+        <div class="pdesc">Old-fashioned only. Not instant.</div>
+      </div>
+      <div class="pitem">
+        <div class="picon">🥛</div>
+        <div class="pname">Plant Milk</div>
+        <div class="pdesc">Soy or Yellow Pea — 8g protein per cup, unflavored.</div>
+      </div>
+      <div class="pitem">
+        <div class="picon">🧊</div>
+        <div class="pname">Silken Tofu</div>
+        <div class="pdesc">Shelf-stable box from the global foods aisle. Blends silky smooth.</div>
+      </div>
+      <div class="pitem">
+        <div class="picon">🌴</div>
+        <div class="pname">Sweetener</div>
+        <div class="pdesc">Medjool dates or raw honey. Both work — see the swap rule above.</div>
+      </div>
+      <div class="pitem">
+        <div class="picon">🥜</div>
+        <div class="pname">Nut Butter</div>
+        <div class="pdesc">Peanut, almond, or cashew. Ingredients should be nuts + salt only.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Velvet Oat Blueprint · <span>Antoinette Williams</span> · 13 Plant-Powered Formulas
+</footer>
+
+<script>
+function toggle(head){
+  const card = head.closest('.rcard');
+  card.classList.toggle('open');
+}
+const els = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}
+  });
+},{threshold:.08});
+els.forEach(e=>io.observe(e));
+</script>
+</body>
+</html>
